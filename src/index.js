@@ -128,11 +128,14 @@ class Square extends React.Component {
         }
         let status; 
         if(winner) {
-            status = 'Winner: ' + winner;
-            console.log(this.state.history);
+          status = 'Winner: ' + winner;
+          console.log(this.state.history);
+        }
+        else if(winner != null){
+          status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
         else{
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+          status = 'Draw!'
         }
         return (
         <div className="game">
@@ -183,6 +186,12 @@ class Square extends React.Component {
         return {
           result: squares[a],
           winnerSquares: lines[i]
+        }
+      }
+      else if(!squares.includes(null) && i === 8){
+        return {
+          result: null,
+          winnerSquares: []
         }
       }
     }
