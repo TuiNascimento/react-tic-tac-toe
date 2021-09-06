@@ -32,6 +32,9 @@ body {
     width: 34px;
   }
   
+  .winner{
+    background-color: goldenrod !important;
+  }
   .square:focus {
     outline: none;
   }
