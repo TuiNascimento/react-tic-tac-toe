@@ -71,9 +71,11 @@ class Square extends React.Component {
       this.setState({
           history: history.concat([{
               squares: squares,
+              column: i % 3 === 0 ? 3 : i % 3,
+              row: Math.ceil(i / 3)
           }]),
           stepNumber: history.length,
-          xIsNext: !this.state.xIsNext,
+          xIsNext: !this.state.xIsNext, 
       })
     }
     
@@ -88,10 +90,11 @@ class Square extends React.Component {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
-
         const moves = history.map((step, move) => {
+          const column = step.column;
+          const row = step.row;
           const desc = move ?
-            'Go to move #' + move : 
+            'Go to move #' + move + '-> Column: ' + column + ' Row: ' + row : 
             'Go to game start';
           return(
             <li key={move}>
