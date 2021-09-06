@@ -19,14 +19,14 @@ class Square extends React.Component {
 
     renderSquare(j) {
       return (<Square 
-                value={this.props.squares[j]}
+                value={this.props.squares[j] || j}
                 onClick={() => this.props.onClick(j)}
             />);
     }
 
     renderRow(i){
       let squares = [];
-      for(let j = 1; j <= 3; j++){
+      for(let j = 0; j <= 2; j++){
         squares.push(this.renderSquare((i * 3) + j))
       }
       return (
@@ -38,14 +38,13 @@ class Square extends React.Component {
 
     renderRows(){
       let rows = [];
-      for(let i = 1; i <= 3; i++){
+      for(let i = 0; i <= 2; i++){
         rows.push(this.renderRow(i))
       }
       return rows;
     }
     
     render() {
-      //console.log(this.renderRows())
       return (
         <div>
           {this.renderRows()}
@@ -158,7 +157,7 @@ class Square extends React.Component {
     ];
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
-      if (squares?.[a] === squares?.[b] && squares?.[a] === squares?.[c]) {
+      if (squares?.[a] != null && squares?.[a] === squares?.[b] && squares?.[a] === squares?.[c]) {
         return squares[a];
       }
     }
